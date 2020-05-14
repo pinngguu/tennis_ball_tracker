@@ -20,13 +20,13 @@ def image_callback(image_frame):
     #from now on, you can work exactly like with opencv
     yellowLower = (30, 100, 50)
     yellowUpper = (60, 255, 255)
-    rgb_image = image_frame
+    rgb_image = read_rgb_image(cv_image, True)
     binary_image_mask = filter_color(rgb_image, yellowLower, yellowUpper)
     contours = getContours(binary_image_mask)
     draw_ball_contour(binary_image_mask, rgb_image,contours)
 
 def read_rgb_image(image_name, show):
-    rgb_image = cv2.imread(image_name)
+    rgb_image = cv2.resize(image_name, (0,0), fx=0.5, fy=0.5)
     if show: 
         cv2.imshow("RGB Image",rgb_image)
     return rgb_image
